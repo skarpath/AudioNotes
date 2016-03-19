@@ -42,7 +42,8 @@
             android:layout_height="wrap_content"
             android:text="Record"
             android:layout_weight="2"
-            android:id="@+id/button" />
+            android:onClick="onRecordButtonClick"
+            android:id="@+id/recordButton" />
 
         <Button
             style="?android:attr/buttonStyleSmall"

@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
         dbHandler = new DBhandler(this, null, null, 1);
 
-
         // Opens dialog fragment to save file
         Button mBtn_Done = (Button) findViewById(R.id.btn_Done);
         mBtn_Done.setOnClickListener(new View.OnClickListener() {
@@ -35,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Will add note will timestamp
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_addNew);
+       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_addNew);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,5 +65,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onRecordButtonClick(View view) {
+        Button button = (Button)findViewById(R.id.recordButton);
+        if (AudioRecordingHandler.isRecording()) {
+            AudioRecordingHandler.stopRecording();
+            button.setText("Record");
+        } else {
+            AudioRecordingHandler.startRecording("test");
+            button.setText("Stop");
+        }
     }
 }
