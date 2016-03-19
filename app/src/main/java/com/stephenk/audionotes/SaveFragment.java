@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 
 public class SaveFragment extends DialogFragment implements View.OnClickListener {
@@ -19,6 +20,7 @@ public class SaveFragment extends DialogFragment implements View.OnClickListener
         // Inflate the layout for this dialog fragment
         View view = inflater.inflate(R.layout.fragment_save_file, container, false);
         setCancelable(false);
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
 
         // Instantiate objects
