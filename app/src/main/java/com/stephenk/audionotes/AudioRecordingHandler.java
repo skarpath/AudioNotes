@@ -23,7 +23,7 @@ public class AudioRecordingHandler {
     public static void startPlaying(String audioFileName) {
         if (!playing) {
             playing = true;
-            /*mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
+            mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
             mFileName += "/" + audioFileName + ".3gp";
 
             mPlayer = new MediaPlayer();
@@ -33,15 +33,17 @@ public class AudioRecordingHandler {
                 mPlayer.start();
             } catch (IOException e) {
                 Log.e(LOG_TAG, "prepare() failed");
-            }*/
+                Log.e(LOG_TAG, e.getMessage());
+                playing = false;
+            }
         }
     }
 
     public static void stopPlaying() {
         if (playing) {
             playing = false;
-            /*mPlayer.release();
-            mPlayer = null;*/
+            mPlayer.release();
+            mPlayer = null;
         }
     }
 
@@ -50,7 +52,7 @@ public class AudioRecordingHandler {
     public static void startRecording(String audioFileName) {
         if (!recording) {
             recording = true;
-            /*mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
+            mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
             mFileName += "/" + audioFileName + ".3gp";
 
 
@@ -64,16 +66,26 @@ public class AudioRecordingHandler {
                 mRecorder.prepare();
             } catch (IOException e) {
                 Log.e(LOG_TAG, "prepare() failed");
-            }*/
+                Log.e(LOG_TAG, e.getMessage());
+                recording = false;
+                return;
+            }
+            try {
+                mRecorder.start();
+            } catch (IllegalStateException e) {
+                Log.e(LOG_TAG, "start() failed");
+                Log.e(LOG_TAG, e.getMessage());
+                recording = false;
+            }
         }
     }
 
     public static void stopRecording() {
         if (recording) {
             recording = false;
-            /*mRecorder.stop();
+            mRecorder.stop();
             mRecorder.release();
-            mRecorder = null;*/
+            mRecorder = null;
         }
     }
 
@@ -82,6 +94,6 @@ public class AudioRecordingHandler {
         return recording;
     }
     public static boolean isPlaying() {
-        return recording;
+        return playing;
     }
 }

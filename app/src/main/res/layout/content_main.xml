@@ -35,7 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Play"
-            android:id="@+id/button3" />
+            android:onClick="onPlayButtonClick"
+            android:id="@+id/playButton" />
 
         <Button
             android:layout_width="wrap_content"

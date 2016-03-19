@@ -1,5 +1,6 @@
 package com.stephenk.audionotes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -71,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Temp change so you can view saved files
         if (id == R.id.load_files) {
-            return true;
+            Intent LoadFilesIntent = new Intent(this, BrowseAudio.class);
+            startActivity(LoadFilesIntent);
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -79,12 +82,33 @@ public class MainActivity extends AppCompatActivity {
 
     public void onRecordButtonClick(View view) {
         Button button = (Button)findViewById(R.id.recordButton);
+        // attempt to record or stop recording (success not granted)
         if (AudioRecordingHandler.isRecording()) {
             AudioRecordingHandler.stopRecording();
-            button.setText("Record");
         } else {
             AudioRecordingHandler.startRecording("test");
+        }
+        // based on audioRecordingHandler's state, updated the ui
+        if (AudioRecordingHandler.isRecording()) {
             button.setText("Stop");
+        } else {
+            button.setText("Record");
+        }
+    }
+
+    public void onPlayButtonClick(View view) {
+        Button button = (Button)findViewById(R.id.playButton);
+        // attempt to play or stop playing (success not granted)
+        if (AudioRecordingHandler.isPlaying()) {
+            AudioRecordingHandler.stopPlaying();
+        } else {
+            AudioRecordingHandler.startPlaying("test");
+        }
+        // based on audioRecordingHandler's state, updated the ui
+        if (AudioRecordingHandler.isPlaying()) {
+            button.setText("Pause");
+        } else {
+            button.setText("Play");
         }
     }
 }
