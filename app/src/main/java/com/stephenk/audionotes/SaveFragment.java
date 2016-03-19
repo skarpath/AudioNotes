@@ -31,6 +31,9 @@ public class SaveFragment extends DialogFragment implements View.OnClickListener
     }
 
     public void onClick(View view) {
-            dismiss();
+
+        // Enter action here
+
+        dismiss();
         }
 }
