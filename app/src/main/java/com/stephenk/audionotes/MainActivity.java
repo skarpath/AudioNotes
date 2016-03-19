@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         dbHandler = new DBhandler(this, null, null, 1);
 
-       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_addNew);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,5 +53,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onRecordButtonClick(View view) {
+        Button button = (Button)findViewById(R.id.recordButton);
+        if (AudioRecordingHandler.isRecording()) {
+            AudioRecordingHandler.stopRecording();
+            button.setText("Record");
+        } else {
+            AudioRecordingHandler.startRecording("test");
+            button.setText("Stop");
+        }
     }
 }
