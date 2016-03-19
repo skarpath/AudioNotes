@@ -1,5 +1,6 @@
 package com.stephenk.audionotes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -66,7 +67,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Temp change so you can view saved files
         if (id == R.id.load_files) {
-            return true;
+            Intent LoadFilesIntent = new Intent(this, BrowseAudio.class);
+            startActivity(LoadFilesIntent);
+
         }
 
         return super.onOptionsItemSelected(item);
