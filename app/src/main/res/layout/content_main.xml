@@ -13,11 +13,22 @@
     tools:showIn="@layout/activity_main"
     tools:context="com.stephenk.audionotes.MainActivity">
 
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true">
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout">
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -40,4 +51,23 @@
             android:text="Done"
             android:id="@+id/button2" />
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/editText"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+
+
 </RelativeLayout>
