@@ -17,6 +17,28 @@ public class AudioRecordingHandler {
     private MediaRecorder mRecorder = null;
     private MediaPlayer mPlayer = null;
 
+    // PLAYBACKS
+    public void startPlaying(String audioFileName) {
+        mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
+        mFileName += "/"+ audioFileName + ".3gp";
+
+        mPlayer = new MediaPlayer();
+        try {
+            mPlayer.setDataSource(mFileName);
+            mPlayer.prepare();
+            mPlayer.start();
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "prepare() failed");
+        }
+    }
+
+    public void stopPlaying() {
+        mPlayer.release();
+        mPlayer = null;
+    }
+
+    // RECORDINGS
+
     public void startRecording(String audioFileName) {
         mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
         mFileName += "/"+ audioFileName + ".3gp";
@@ -33,5 +55,11 @@ public class AudioRecordingHandler {
         } catch (IOException e) {
             Log.e(LOG_TAG, "prepare() failed");
         }
+    }
+
+    public void stopRecording() {
+        mRecorder.stop();
+        mRecorder.release();
+        mRecorder = null;
     }
 }
