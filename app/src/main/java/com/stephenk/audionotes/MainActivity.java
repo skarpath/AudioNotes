@@ -69,12 +69,33 @@ public class MainActivity extends AppCompatActivity {
 
     public void onRecordButtonClick(View view) {
         Button button = (Button)findViewById(R.id.recordButton);
+        // attempt to record or stop recording (success not granted)
         if (AudioRecordingHandler.isRecording()) {
             AudioRecordingHandler.stopRecording();
-            button.setText("Record");
         } else {
             AudioRecordingHandler.startRecording("test");
+        }
+        // based on audioRecordingHandler's state, updated the ui
+        if (AudioRecordingHandler.isRecording()) {
             button.setText("Stop");
+        } else {
+            button.setText("Record");
+        }
+    }
+
+    public void onPlayButtonClick(View view) {
+        Button button = (Button)findViewById(R.id.playButton);
+        // attempt to play or stop playing (success not granted)
+        if (AudioRecordingHandler.isPlaying()) {
+            AudioRecordingHandler.stopPlaying();
+        } else {
+            AudioRecordingHandler.startPlaying("test");
+        }
+        // based on audioRecordingHandler's state, updated the ui
+        if (AudioRecordingHandler.isPlaying()) {
+            button.setText("Pause");
+        } else {
+            button.setText("Play");
         }
     }
 }
