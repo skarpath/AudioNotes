@@ -64,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        //Temp change so you can view saved files
+        if (id == R.id.load_files) {
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
