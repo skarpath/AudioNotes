@@ -23,7 +23,19 @@ public class MainActivity extends AppCompatActivity {
 
         dbHandler = new DBhandler(this, null, null, 1);
 
+        // Opens dialog fragment to save file
+        Button mBtn_Done = (Button) findViewById(R.id.btn_Done);
+        mBtn_Done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SaveFragment saveFragment = new SaveFragment();
+                saveFragment.show(getFragmentManager(), "Save Fragment");
+            }
+        });
+
+        // Will add note will timestamp
        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_addNew);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
