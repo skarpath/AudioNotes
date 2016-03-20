@@ -16,6 +16,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static DBhandler dbHandler;
 
+    Button mBtn_PlayPause;
+    Button mBtn_RecordStop;
+    Button mBtn_Done;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,18 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         dbHandler = new DBhandler(this, null, null, 1);
 
-        // Opens dialog fragment to save file
-        Button mBtn_Done = (Button) findViewById(R.id.btn_Done);
-        mBtn_Done.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SaveFragment saveFragment = new SaveFragment();
-                saveFragment.show(getFragmentManager(), "Save Fragment");
-            }
-        });
-
         // Will add note will timestamp
-       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_addNew);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_addNew);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +42,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mBtn_PlayPause = (Button) findViewById(R.id.playButton);
+        mBtn_RecordStop = (Button) findViewById(R.id.recordButton);
+        mBtn_Done = (Button) findViewById(R.id.btn_Done);
+
+        /** Untested button disable/enable stuff */
+//        if (AudioRecordingHandler.isRecording()) {
+//            mBtn_PlayPause.setEnabled(false);
+//            mBtn_Done.setEnabled(false);
+//        } else {
+//            mBtn_PlayPause.setEnabled(true);
+//            mBtn_Done.setEnabled(true);
+//        }
+//        if (AudioRecordingHandler.isPlaying()) {
+//            mBtn_RecordStop.setEnabled(false);
+//            mBtn_Done.setEnabled(false);
+//        } else {
+//            mBtn_RecordStop.setEnabled(true);
+//            mBtn_Done.setEnabled(true);
+//        }
+        /**************************************** */
 
     }
 
@@ -110,5 +124,17 @@ public class MainActivity extends AppCompatActivity {
         } else {
             button.setText("Play");
         }
+    }
+
+    public void saveAudioFile(View view) {
+        // Opens dialog fragment to save file
+        Button mBtn_Done = (Button) findViewById(R.id.btn_Done);
+        mBtn_Done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SaveFragment saveFragment = new SaveFragment();
+                saveFragment.show(getFragmentManager(), "Save Fragment");
+            }
+        });
     }
 }

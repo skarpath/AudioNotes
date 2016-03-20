@@ -44,14 +44,16 @@
             android:text="Record"
             android:layout_weight="2"
             android:onClick="onRecordButtonClick"
-            android:id="@+id/recordButton" />
+            android:id="@+id/recordButton"
+            android:clickable="false" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Done"
-            android:id="@+id/btn_Done" />
+            android:id="@+id/btn_Done"
+            android:onClick="saveAudioFile" />
     </LinearLayout>
 
     <LinearLayout
