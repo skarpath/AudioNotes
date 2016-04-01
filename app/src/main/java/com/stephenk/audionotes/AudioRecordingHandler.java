@@ -5,6 +5,8 @@ import android.media.MediaRecorder;
 import android.os.Environment;
 import android.util.Log;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -19,12 +21,17 @@ public class AudioRecordingHandler {
     private static boolean recording = false;
     private static boolean playing = false;
 
+    public static void makeSureDirectoryExists() {
+        File makeDirectoryFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/AudioNotes/");
+        makeDirectoryFile.mkdirs();
+    }
+
     // PLAYBACKS
     public static void startPlaying(String audioFileName) {
         if (!playing) {
             playing = true;
             mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
-            mFileName += "/" + audioFileName + ".3gp";
+            mFileName += "/AudioNotes/" + audioFileName + ".3gp";
 
             mPlayer = new MediaPlayer();
             try {
@@ -52,8 +59,9 @@ public class AudioRecordingHandler {
     public static void startRecording(String audioFileName) {
         if (!recording) {
             recording = true;
+
             mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
-            mFileName += "/" + audioFileName + ".3gp";
+            mFileName += "/AudioNotes/" + audioFileName + ".3gp";
 
 
             mRecorder = new MediaRecorder();

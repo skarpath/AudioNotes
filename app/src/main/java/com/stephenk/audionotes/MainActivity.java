@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         dbHandler = new DBhandler(this, null, null, 1);
 
+        // make sure the directory we are saving notes to exits
+        AudioRecordingHandler.makeSureDirectoryExists();
+
         // Will add note will timestamp
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_addNew);
 

@@ -1,14 +1,18 @@
 package com.stephenk.audionotes;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
+import java.io.File;
 
 public class BrowseAudio extends AppCompatActivity {
 
@@ -68,6 +72,18 @@ public class BrowseAudio extends AppCompatActivity {
         });
 
         */
+
+
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+        path += "/AudioNotes/";
+        Log.d("Files", "Path: " + path);
+        File f = new File(path);
+        File file[] = f.listFiles();
+        Log.d("Files", "Size: "+ file.length);
+        for (int i=0; i < file.length; i++)
+        {
+            Log.d("Files", "FileName:" + file[i].getName());
+        }
 
     }
 
