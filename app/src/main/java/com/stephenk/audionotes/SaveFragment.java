@@ -2,6 +2,7 @@ package com.stephenk.audionotes;
 
 
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,5 +38,8 @@ public class SaveFragment extends DialogFragment implements View.OnClickListener
         // Enter action here
 
         dismiss();
+
+        Intent intent = new Intent(getActivity(), BrowseAudio.class);
+        startActivity(intent);
         }
 }
